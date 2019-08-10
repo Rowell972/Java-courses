@@ -45,9 +45,10 @@ public class InteractRunner {
 					calc.cleanResult();
 					System.out.println("Enter first argument: ");
 					first = scaner.next();
+				} else {
+					System.out.println("Exit? yes/no");
+					exit = scaner.next();
 				}
-				System.out.println("Exit? yes/no");
-				exit = scaner.next();
 			}
 		} finally {
 			scaner.close();
