@@ -20,6 +20,8 @@ public class InteractMenu {
     private String secondArgument;
     private String answer;
     private int result;
+    private String textResult = "Result: ";
+    private StringBuilder stringBuilder = new StringBuilder(textResult);
     private Scanner scanner = new Scanner(System.in);
 
 
@@ -83,19 +85,23 @@ public class InteractMenu {
             switch (operand) {
                 case ("+") :
                     calculator.add(args[0], args[1]);
-                    System.out.println("Result: " + calculator.getResult());
+                    stringBuilder.append(calculator.getResult());
+                    System.out.println(stringBuilder.toString());
                     break;
                 case ("-") :
                     calculator.sub(args[0], args[1]);
-                    System.out.println("Result: " + calculator.getResult());
+                    stringBuilder.append(calculator.getResult());
+                    System.out.println(stringBuilder.toString());
                     break;
                 case ("*") :
                     calculator.mult(args[0], args[1]);
-                    System.out.println("Result: " + calculator.getResult());
+                    stringBuilder.append(calculator.getResult());
+                    System.out.println(stringBuilder.toString());
                     break;
                 case ("/") :
                     calculator.div(args[0], args[1]);
-                    System.out.println("Result: " + calculator.getResult());
+                    stringBuilder.append(calculator.getResult());
+                    System.out.println(stringBuilder.toString());
                     break;
             }
             saveResult();
