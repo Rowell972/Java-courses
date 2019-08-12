@@ -11,7 +11,7 @@ public class InteractRunner {
 			System.out.println("Enter first argument: ");
 			String first = scaner.next();
 			String exit = "no";
-			String cleanResult = "no";
+			String cleanResult;
 			while(!exit.equals("yes")) {
 				System.out.println("Enter second argument: ");
 				String second = scaner.next();

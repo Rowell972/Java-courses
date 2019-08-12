@@ -18,7 +18,14 @@ public class Calculator {
 	}
 	
 	public void div(int ... params) {
-		result = params[0] / params[1];
+		if (params.length > 0) {
+			this.result = params[0];
+			for (int index = 1; index != params.length ; ++index) {
+				if (params[index] != 0) {
+					this.result /= params[index];
+				}
+			}
+		}
 	}
 
 
