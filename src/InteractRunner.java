@@ -1,7 +1,6 @@
 public class InteractRunner {
 
 
-
 	public static void main(String[] args) {
 
         InteractMenu intMenu = new InteractMenu();
@@ -11,5 +10,5 @@ public class InteractRunner {
             intMenu.startDialog();
             intMenu.conductOperations(intMenu.getArgs());
         }
-    }
+	}
 }

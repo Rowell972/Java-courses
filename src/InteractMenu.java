@@ -6,21 +6,27 @@ public class InteractMenu {
     private String operand;
     private String firstArgument;
     private String secondArgument;
-    private String result;
-    private int newResult;
+    private String answer;
+    private int result;
     private Scanner scanner = new Scanner(System.in);
     private final int COUNT_OF_ARGS = 2;
     private int [] args = new int[COUNT_OF_ARGS ];
     private char [] checkArgs = args.toString().toCharArray();
     private boolean isNumber = false;
     private boolean isClose = false;
+    private boolean isSave = false;
     private Calculator calculator;
 
 
     public void startDialog() {
-        System.out.println("Enter first argument: ");
-        firstArgument = scanner.next();
-        args[0] = Integer.parseInt(firstArgument);
+        if (!isSave) {
+            System.out.println("Enter first argument: ");
+            firstArgument = scanner.next();
+            args[0] = Integer.parseInt(firstArgument);
+        } else {
+            firstArgument = String.valueOf(result);
+            args[0] = result;
+        }
         System.out.println("Enter second argument: ");
         secondArgument = scanner.next();
         args[1] = Integer.parseInt(secondArgument);
@@ -60,12 +66,13 @@ public class InteractMenu {
     }
 
 
-    public void exitFromCalc() {
+    private void exitFromCalc() {
         System.out.println("Do you want exit? (yes/no)");
         exit = scanner.next();
         if (exit.equals("yes")) {
             isClose = true;
         } else if (exit.equals("no")){
+            startDialog();
             conductOperations(args);
         } else {
             System.out.println("Wrong input." + "\n" +
@@ -74,14 +81,19 @@ public class InteractMenu {
     }
 
 
-    public void saveResult() {
+    private void saveResult() {
         System.out.println("Do you wanna save result? (yes/no)");
-        result = scanner.next();
-        if (result.equals("yes")) {
-            result = String.valueOf(calculator.getResult());
-            newResult = Integer.parseInt(result);
-        } else if (result.equals("no")){
+        answer = scanner.next();
+        if (answer.equals("yes")) {
+            isSave = true;
+            result = calculator.getResult();
+            //startDialog();
+            //conductOperations(args);
+        } else if (answer.equals("no")){
+            isSave = false;
             calculator.cleanResult();
+            //startDialog();
+            //conductOperations(args);
         } else {
             System.out.println("Wrong input." + "\n" +
                                 "Try again");
@@ -89,7 +101,7 @@ public class InteractMenu {
     }
 
 
-    public boolean checkInputForNumbers(char [] checkArgs) {
+    private boolean checkInputForNumbers(char [] checkArgs) {
         for (Character number : checkArgs) {
             if (Character.isDigit(number)) {
                 isNumber = true;
